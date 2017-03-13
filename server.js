@@ -47,7 +47,7 @@ var waker = {
 		wakerworker = schedule.scheduleJob('*/4 * * * *', function(){
 			console.log('----> You know what this does, and its being called. <----');
 			try{
-				http.get("http://comprasserver.herokuapp.com");
+				http.get("http://comprasserver2.herokuapp.com");
 			} catch(e) {
 				console.log(e);
 			}
