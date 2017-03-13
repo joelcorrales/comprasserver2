@@ -28,7 +28,7 @@ app.use(function(req, res, next) {
 	next();
 });
 
-console.log(process.env);
+//console.log(process.env);
 
 /*
 	We only need to keep athis server awake for the 9pm notification. After that it can be idle as long as it wants.
@@ -77,3 +77,7 @@ app.get('/app/wakeup', function (req, res) {
 
 	res.send('Im awake!!!');
 });
+
+
+console.log('Server running on port', (process.env.PORT || 6000));
+app.listen(process.env.PORT || 6000);
