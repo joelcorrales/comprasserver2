@@ -49,29 +49,31 @@ var waker = {
 			wakerworker.cancel();
 			changer.cancel();
 		} catch(e) {
-			console.log(e);
+			console.error(e);
 		}
 		var that = this;
 		wakerworker = schedule.scheduleJob('*/4 * * * *', function(){
 			console.log('----> You know what this does, and its being called. <----');
-			try{
-				http.get("http://comprasserver.herokuapp.com");
-			} catch(e) {
-				console.log(e);
-			}
+			http.get("http://comprasserver.herokuapp.com");
 		});
 
-		changer = schedule.scheduleJob('0 * * * *', function() {
-		  var time = new Date();
+		changer = schedule.scheduleJob('* * * * *', function() {
+			console.log("----> Checking server time");
+			var time = new Date();
 
-		  if (time.getHours() > 15) {
-		  	that.stop();
-		  }
+			if (time.getHours() > 15) {
+				console.log("----> More than 15:00, Starting: comprasserver");
+				that.stop();
+			}
 		});
 	},
 	stop: function (argument) {
-		wakerworker.cancel();
-		changer.cancel();
+		try {
+			wakerworker.cancel();
+			changer.cancel();
+		} catch(e) {
+			console.error(e);
+		}
 		http.get("http://comprasserver.herokuapp.com/app/start");
 	}
 };
