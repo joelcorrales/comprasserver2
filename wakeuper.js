@@ -58,7 +58,7 @@ var waker = {
 			http.get("http://comprasserver2.herokuapp.com");
 		});
 
-		changer = schedule.scheduleJob('* * * * *', function() {
+		changer = schedule.scheduleJob('*/30 * * * *', function() {
 			console.log("----> Checking server time");
 			var time = new Date();
 			console.log("----> TIME: "+time.toString());
