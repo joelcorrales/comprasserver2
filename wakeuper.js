@@ -55,7 +55,7 @@ var waker = {
 		var that = this;
 		wakerworker = schedule.scheduleJob('*/4 * * * *', function(){
 			console.log('----> You know what this does, and its being called. <----');
-			http.get("http://comprasserver.herokuapp.com");
+			http.get("http://comprasserver2.herokuapp.com");
 		});
 
 		changer = schedule.scheduleJob('* * * * *', function() {
