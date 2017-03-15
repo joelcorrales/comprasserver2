@@ -45,6 +45,7 @@ var wakerworker,
 
 var waker = {
 	start: function (argument) {
+		console.log('----> WAKER START CALLED!! <----');
 		try {
 			wakerworker.cancel();
 			changer.cancel();
@@ -60,6 +61,7 @@ var waker = {
 		changer = schedule.scheduleJob('* * * * *', function() {
 			console.log("----> Checking server time");
 			var time = new Date();
+			console.log("----> TIME: "+time.toString());
 
 			if (time.getHours() > 15) {
 				console.log("----> More than 15:00, Starting: comprasserver");
@@ -68,6 +70,7 @@ var waker = {
 		});
 	},
 	stop: function (argument) {
+		console.log('----> WAKER STOP CALLED!! <----');
 		try {
 			wakerworker.cancel();
 			changer.cancel();
