@@ -41,8 +41,16 @@ app.use(function(req, res, next) {
 var wakerworker,
 	changer;
 
+
+
 var waker = {
 	start: function (argument) {
+		try {
+			wakerworker.cancel();
+			changer.cancel();
+		} catch(e) {
+			console.log(e);
+		}
 		var that = this;
 		wakerworker = schedule.scheduleJob('*/4 * * * *', function(){
 			console.log('----> You know what this does, and its being called. <----');
@@ -78,6 +86,8 @@ app.get('/app/start', function (req, res) {
 	res.send('Im awake!!!');
 });
 
+waker.start();
 
 console.log('Server running on port', (process.env.PORT || 6000));
+console.log('SERVER STARTED AT: '+(new Date()).toString()+' (SERVER TIME)');
 app.listen(process.env.PORT || 6000);

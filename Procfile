@@ -1,1 +1,1 @@
-web: env TZ='UTC+3' node server.js
+web: env TZ='UTC+3' node wakeuper.js
